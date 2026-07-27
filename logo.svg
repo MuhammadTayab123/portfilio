@@ -1,0 +1,44 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer gradient circle -->
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle with glow -->
+  <circle cx="50" cy="50" r="48" fill="url(#logoGradient)" opacity="0.1" filter="url(#glow)"/>
+  
+  <!-- Outer ring -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="url(#logoGradient)" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Inner ring -->
+  <circle cx="50" cy="50" r="42" fill="none" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.3"/>
+  
+  <!-- Modern T letter -->
+  <text x="50" y="65" font-family="'Segoe UI', sans-serif" font-size="48" font-weight="700" text-anchor="middle" fill="url(#logoGradient)" filter="url(#glow)">T</text>
+  
+  <!-- Corner accent lines (top-left) -->
+  <line x1="20" y1="20" x2="28" y2="20" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="20" y1="20" x2="20" y2="28" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  
+  <!-- Corner accent lines (top-right) -->
+  <line x1="80" y1="20" x2="72" y2="20" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="80" y1="20" x2="80" y2="28" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  
+  <!-- Corner accent lines (bottom-left) -->
+  <line x1="20" y1="80" x2="28" y2="80" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="20" y1="80" x2="20" y2="72" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  
+  <!-- Corner accent lines (bottom-right) -->
+  <line x1="80" y1="80" x2="72" y2="80" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="80" y1="80" x2="80" y2="72" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+</svg>
