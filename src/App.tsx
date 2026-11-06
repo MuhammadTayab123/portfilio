@@ -1,0 +1,35 @@
+﻿import { lazy, Suspense, useEffect, useState } from "react";
+import "./styles.css";
+
+const ComputerScene = lazy(() => import("./ComputerScene"));
+
+const projects = [
+  { number: "01", name: "BrainOS", type: "PERSONAL AI OPERATING SYSTEM", description: "A personal AI operating system connecting long-term memory, semantic search, tools, and everyday workflows with security at its core.", stack: "TypeScript · PostgreSQL · pgvector · Next.js · Ollama", status: "IN DEVELOPMENT" },
+  { number: "02", name: "Decorish", type: "E-COMMERCE EXPERIENCE", description: "A party-decoration shopping experience focused on clear product presentation, cohesive branding, and a smoother path from discovery to checkout.", stack: "Shopify · UI/UX · E-commerce", status: "PRODUCT WORK" },
+  { number: "03", name: "PetFied", type: "PET-CARE PRODUCT CONCEPT", description: "A pet-care product direction exploring a warm visual identity, accessible interface patterns, and a welcoming digital experience.", stack: "React · Design systems · UI/UX", status: "CONCEPT" },
+];
+
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [show3D, setShow3D] = useState(false);
+  useEffect(() => {
+    document.title = "Muhammad Tayyab — Developer & Builder";
+    const desktop = window.matchMedia("(min-width: 900px) and (prefers-reduced-motion: no-preference)");
+    const update = () => setShow3D(desktop.matches);
+    update(); desktop.addEventListener?.("change", update);
+    return () => desktop.removeEventListener?.("change", update);
+  }, []);
+  const closeMenu = () => setMenuOpen(false);
+  return <>
+    <header className="site-header"><a className="wordmark" href="#home" aria-label="Tayyab home">t<span>.</span></a><button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(v => !v)}>☰</button><nav className={menuOpen ? "nav open" : "nav"} aria-label="Main navigation"><a onClick={closeMenu} href="#about">About</a><a onClick={closeMenu} href="#skills">Skills</a><a onClick={closeMenu} href="#projects">Projects</a><a onClick={closeMenu} href="#contact" className="nav-contact">Contact <span>↗</span></a></nav></header>
+    <main id="home">
+      <section className="hero container"><div className="hero-copy"><p className="eyebrow"><span className="status-dot"/> COMPUTER SCIENCE · SOFTWARE ENGINEERING</p><h1>Building useful<br/>software with <em>purpose.</em></h1><p className="hero-intro">I'm <strong>Muhammad Tayyab</strong> — a computer science student and full-stack developer exploring AI systems, backend engineering, and thoughtful digital products.</p><div className="hero-actions"><a className="button button-primary" href="#projects">Explore projects <span>↗</span></a><a className="text-link" href="mailto:c2muhammadtayyab@gmail.com">Let's talk <span>↗</span></a></div><div className="hero-meta"><span>BASED IN PAKISTAN</span><span>LEARN · BUILD · IMPROVE</span></div></div><div className="hero-visual"><div className="visual-grid"/><div className="orb orb-one"/><div className="orb orb-two"/>{show3D ? <Suspense fallback={<div className="scene-fallback">Preparing the 3D workspace…</div>}><ComputerScene/></Suspense> : <div className="scene-fallback"><div className="fallback-monitor"><span>t.</span><i/><i/><i/></div><small>SOFTWARE · SYSTEMS · IDEAS</small></div>}<div className="visual-caption"><span>01 / INTERACTIVE WORKSPACE</span><span>DRAG TO EXPLORE</span></div></div><a className="scroll-cue" href="#about">SCROLL TO EXPLORE <span>↓</span></a></section>
+      <section className="intro-strip"><div className="container"><span>MY FOCUS</span><p>Thoughtful engineering. Practical AI. <strong>Useful products.</strong></p></div></section>
+      <section className="section container" id="about"><div className="section-heading"><p className="eyebrow">01 / ABOUT</p><h2>Curious by nature.<br/><em>Builder by choice.</em></h2></div><div className="about-content"><p className="lead">I study Computer Science at Quaid-i-Azam University, Islamabad, and spend my time turning ideas into working software.</p><p>My interests sit where backend engineering, AI, and product experience meet. I enjoy understanding how systems fit together — from data models and APIs to the interface details people notice every day.</p><p>I value clear thinking, careful implementation, security, and shipping work that can stand up to real use.</p><a className="text-link" href="https://github.com/MuhammadTayab123" target="_blank" rel="noreferrer">GitHub profile <span>↗</span></a></div></section>
+      <section className="section skills-section" id="skills"><div className="container"><div className="section-heading"><p className="eyebrow">02 / CAPABILITIES</p><h2>Tools are useful.<br/><em>Thinking matters more.</em></h2></div><div className="skills-grid"><article><span>01</span><h3>Full-stack development</h3><p>Building maintainable web applications, APIs, and clear user experiences.</p><small>PYTHON · DJANGO · TYPESCRIPT · REACT</small></article><article><span>02</span><h3>AI & intelligent systems</h3><p>Exploring practical AI applications, retrieval, long-term memory, and tool use.</p><small>LLMs · RAG · OLLAMA · PGVECTOR</small></article><article><span>03</span><h3>Backend & data</h3><p>Designing secure services, data models, integrations, and reliable workflows.</p><small>NODE.JS · POSTGRESQL · REST APIS</small></article></div></div></section>
+      <section className="section container" id="projects"><div className="section-heading"><p className="eyebrow">03 / SELECTED WORK</p><h2>Projects with<br/><em>a purpose.</em></h2></div><div className="project-list">{projects.map(p=><article className="project-row" key={p.number}><span className="project-number">{p.number}</span><div className="project-main"><p className="eyebrow">{p.type}</p><h3>{p.name}</h3><p>{p.description}</p><small>{p.stack}</small></div><span className="project-status">{p.status}</span></article>)}</div></section>
+      <section className="contact-section" id="contact"><div className="container contact-inner"><div><p className="eyebrow">04 / GET IN TOUCH</p><h2>Have a good<br/><em>problem to solve?</em></h2><p>I'm open to interesting projects, collaborations, and conversations about software and AI.</p></div><div className="contact-links"><a href="mailto:c2muhammadtayyab@gmail.com">c2muhammadtayyab@gmail.com <span>↗</span></a><a href="https://github.com/MuhammadTayab123" target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a href="https://www.linkedin.com/in/muhammad-tayyab-37b22b394/" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a><a href="https://www.instagram.com/thecodetayyab/" target="_blank" rel="noreferrer">Instagram <span>↗</span></a></div></div></section>
+    </main><footer className="container footer"><a className="wordmark" href="#home">t<span>.</span></a><p>Designed with intent. Built with curiosity.</p><small>© {new Date().getFullYear()} MUHAMMAD TAYYAB</small><a href="#home">BACK TO TOP ↑</a></footer>
+  </>;
+}
+export default App;
